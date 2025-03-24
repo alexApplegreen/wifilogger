@@ -41,7 +41,7 @@ class Measure():
             sys.exit(-1)
 
     def measure(self) -> dict:
-        s = speedtest.Speedtest()
+        s = speedtest.Speedtest(secure=True)
         s.get_servers()
         s.get_best_server()
         s.download(threads=self._threads)
