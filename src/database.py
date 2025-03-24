@@ -1,10 +1,11 @@
 import psycopg2
-from logging import getLogger
+import logging
 
 class Database():
 
     def __init__(self, host, user, name):
-        self._logger = getLogger(__name__)
+        logging.basicConfig()
+        self._logger = logging.getLogger(__name__)
         self._name = name
         self._conn = self.connect(host, user, name)
 

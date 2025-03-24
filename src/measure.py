@@ -1,9 +1,9 @@
 import speedtest
 import os
 import sys
+import logging
 
 from dotenv import load_dotenv
-from logging import getLogger
 
 from database import Database
 
@@ -11,8 +11,8 @@ class Measure():
 
     def __init__(self):
         load_dotenv()
-
-        self._logger = getLogger(__name__)
+        logging.basicConfig()
+        self._logger = logging.getLogger(__name__)
         self._threads = None
         self._servers = []
         self._database = self.init_db()
