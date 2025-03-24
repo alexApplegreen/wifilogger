@@ -16,6 +16,6 @@ if __name__ == "__main__":
 
     while(True):
         data = measure.measure()
-        measure.save(data)
         measure.log(data)
+        measure.save(data)
         time.sleep(measure.sleep_cycle)

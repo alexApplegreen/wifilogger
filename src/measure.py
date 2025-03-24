@@ -21,7 +21,7 @@ class Measure():
         except ValueError:
             self._sleep_cycle = 10 * 60  # 10 minutes
 
-        self._logger.warning(f"Measureing with cycle of {self._sleep_cycle} seconds")
+        self._logger.info(f"Measureing with cycle of {self._sleep_cycle} seconds")
 
 
     def init_db(self):
@@ -62,7 +62,7 @@ class Measure():
 
     def log(self, data: dict) -> None:
         down, up, ping = self.parse(data)
-        self._logger.info(f"Measurement: Downlink: {down} Mbit/s, Uplink: {up} Mbit/s")
+        self._logger.info(f"Measurement: Downlink: {down} bit/s, Uplink: {up} bit/s")
 
     @property
     def sleep_cycle(self):
