@@ -1,6 +1,8 @@
 import psycopg2
 import logging
 
+from datetime import datetime
+
 class Database():
 
     def __init__(self, host, user, name):
@@ -24,8 +26,9 @@ class Database():
                 down = float(down)
                 up = float(up)
                 ping = float(ping)
-                sql = f"INSERT INTO logs(down, up, ping) VALUES({down}, {up}, {ping})"
+                sql = f"INSERT INTO logs(down, up, ping, timestamp) VALUES({down}, {up}, {ping}, {datetime.now()})"
                 cursor.execute(sql)
+                self._conn.commit()
                 self._logger.info("Successfully saved measurement")
             except psycopg2.OperationalError:
                 self._logger.error("Could not save measurement to Dabatase")
