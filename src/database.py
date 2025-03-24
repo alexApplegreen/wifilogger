@@ -1,11 +1,9 @@
-from csv import excel
 import psycopg2
 import logging
 
 class Database():
 
     def __init__(self, host, user, name):
-        logging.basicConfig()
         self._logger = logging.getLogger(__name__)
         self._name = name
         self._conn = self.connect(host, user, name)

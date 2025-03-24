@@ -11,7 +11,7 @@ class Measure():
 
     def __init__(self):
         load_dotenv()
-        logging.basicConfig()
+
         self._logger = logging.getLogger(__name__)
         self._threads = None
         self._servers = []
@@ -19,9 +19,9 @@ class Measure():
         try:
             self._sleep_cycle = int(os.environ.get("SLEEP_CYCLE", 10))
         except ValueError:
-            self._sleep_cycle = 10
+            self._sleep_cycle = 10 * 60  # 10 minutes
 
-        self._logger.info(f"Measureing with cycle of {self._sleep_cycle} seconds")
+        self._logger.warning(f"Measureing with cycle of {self._sleep_cycle} seconds")
 
 
     def init_db(self):
@@ -36,7 +36,8 @@ class Measure():
                 db_name
             )
             return database
-        except:
+        except Exception:
+            self._logger.error("Could not connect to database")
             sys.exit(-1)
 
     def measure(self) -> dict:
