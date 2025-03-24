@@ -26,7 +26,7 @@ class Database():
                 down = float(down)
                 up = float(up)
                 ping = float(ping)
-                sql = f'INSERT INTO logs(down, up, ping, timestamp) VALUES({down}, {up}, {ping}, "{datetime.now()}")'
+                sql = f"INSERT INTO logs(down, up, ping, timestamp) VALUES({down}, {up}, {ping}, '{datetime.now()}')"
                 cursor.execute(sql)
                 self._conn.commit()
                 self._logger.info("Successfully saved measurement")
