@@ -66,7 +66,7 @@ class Measure():
 
     @property
     def sleep_cycle(self):
-        return self.sleep_cycle
+        return self._sleep_cycle
 
     @sleep_cycle.setter
     def sleep_cycle(self, val):
