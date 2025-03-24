@@ -60,7 +60,8 @@ class Measure():
         self._database.save_measurement(down, up, ping)
 
     def log(self, data: dict) -> None:
-        self._logger.info("Measurement: Downlink: {down} Mbit/s, Uplink: {up} Mbit/s")
+        down, up, ping = self.parse(data)
+        self._logger.info(f"Measurement: Downlink: {down} Mbit/s, Uplink: {up} Mbit/s")
 
     @property
     def sleep_cycle(self):
