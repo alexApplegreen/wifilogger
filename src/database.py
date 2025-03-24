@@ -19,7 +19,7 @@ class Database():
         return conn
 
     def save_measurement(self, down, up, ping):
-        with self._conn.cursor as cursor:
+        with self._conn.cursor() as cursor:
             try:
                 down = float(down)
                 up = float(up)
