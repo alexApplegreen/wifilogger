@@ -1,3 +1,4 @@
+from csv import excel
 import speedtest
 import os
 import sys
@@ -29,15 +30,15 @@ class Measure():
         db_name = os.environ.get("DB_NAME", "")
         db_user = os.environ.get("DB_USER", "")
 
-        database = Database(
-            db_host,
-            db_user,
-            db_name
-        )
-        if database is None:
+        try:
+            database = Database(
+                db_host,
+                db_user,
+                db_name
+            )
+            return database
+        except:
             sys.exit(-1)
-
-        return database
 
     def measure(self) -> dict:
         s = speedtest.Speedtest()

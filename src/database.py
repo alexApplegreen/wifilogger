@@ -9,18 +9,14 @@ class Database():
         self._conn = self.connect(host, user, name)
 
     def connect(self, host, user, name):
-        try:
-            conn = psycopg2.connect(
-                dbname=name,
-                user=user,
-                host=host,
-                password=None
-            )
-            self._logger.info("Successfully connected to dabatase")
-            return conn
-        except:
-            self._logger.error("Could not connect to database")
-            return None
+        conn = psycopg2.connect(
+            dbname=name,
+            user=user,
+            host=host,
+            password=None
+        )
+        self._logger.info("Successfully connected to dabatase")
+        return conn
 
     def save_measurement(self, down, up, ping):
         with self._conn.cursor as cursor:
