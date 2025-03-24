@@ -1,3 +1,4 @@
+from csv import excel
 import psycopg2
 import logging
 
@@ -22,8 +23,13 @@ class Database():
     def save_measurement(self, down, up, ping):
         with self._conn.cursor as cursor:
             try:
+                down = float(down)
+                up = float(up)
+                ping = float(ping)
                 sql = f"INSERT INTO logs(down, up, ping) VALUES({down}, {up}, {ping})"
                 cursor.execute(sql)
                 self._logger.info("Successfully saved measurement")
             except psycopg2.OperationalError:
-                print("Could not save measurement to Dabatase")
+                self._logger.error("Could not save measurement to Dabatase")
+            except ValueError:
+                self._logger.error("Could not convert datatypes of measured values")
