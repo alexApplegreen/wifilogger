@@ -1,0 +1,11 @@
+[Unit]
+Description=Wifilogger
+
+[Service]
+Type=simple
+ExecStart=/home/alex/wifilogger/venv/bin/python /home/alex/wifilogger/src/main.py
+Restart=on-failure
+RestartSec=60s
+
+[Install]
+WantedBy=multi-user.target
